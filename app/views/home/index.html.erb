@@ -1,10 +1,35 @@
-<!-- app/views/home/index.html.erb -->
 <h1>Welcome to Rick and Morty Collectibles</h1>
 
-<ul>
-  <% @collectible_cards.each do |card| %>
-    <li>
-      <%= card['name'] %> - <%= card['description'] %> - $<%= card['price'] %>
-    </li>
+<nav class="navbar">
+  <ul class="navbar-list">
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'About Us', about_us_path %></li>
+    <li><%= link_to 'Contact Us', contact_us_path %></li>
+  </ul>
+  <div class="search-bar">
+    <%= form_tag(search_path, method: :get) do %>
+      <%= text_field_tag(:query, params[:query], placeholder: 'Search by name, status, gender, etc.') %>
+      <%= submit_tag('Search') %>
+    <% end %>
+  </div>
+</nav>
+
+<div class="cards-container">
+  <% @character_details.each do |character| %>
+    <div class="card">
+      <%= image_tag(character['image']) %>
+      <div class="card-details">
+        <h2><%= character['name'] %></h2>
+        <p>Status: <%= character['status'] %></p>
+        <p>Gender: <%= character['gender'] %></p>
+        <% if character['location'] %>
+          <p>Location: <%= character['location']['name'] %></p>
+          <p>Dimension: <%= character['location']['dimension'] %></p>
+        <% else %>
+          <p>Location: Unknown</p>
+          <p>Dimension: Unknown</p>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
