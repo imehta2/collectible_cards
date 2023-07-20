@@ -20,9 +20,10 @@ class HomeController < ApplicationController
   end
 
   def search
-    query = params[:query]
+    query = params[:query].to_s.downcase.strip
+
     # Add logic here to perform the search based on the 'query' parameter
     # For example, you can filter the @character_details array based on the query.
-    @search_results = @character_details.select { |character| character['name'].include?(query) }
+    @search_results = @character_details.select { |character| character['name'].downcase.include?(query) }
   end
 end
