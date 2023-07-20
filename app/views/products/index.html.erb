@@ -1,0 +1,29 @@
+<!-- app/views/products/index.html.erb -->
+<h1>Rick and Morty Collectibles</h1>
+
+<%= render 'shared/navbar' %>
+<h1>Products</h1>
+
+<nav class="navbar">
+  <!-- Navigation links -->
+</nav>
+
+<div class="cards-container">
+  <% @products.each do |product| %>
+    <div class="card">
+      <%= image_tag(product['image']) %>
+      <div class="card-details">
+        <h2><%= product.name %></h2>
+        <p>Status: <%= product.status %></p>
+        <p>Gender: <%= product.gender %></p>
+        <% if product.location.present? %>
+          <p>Location: <%= product.location %></p>
+          <p>Dimension: <%= product.dimension %></p>
+        <% else %>
+          <p>Location: Unknown</p>
+          <p>Dimension: Unknown</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
