@@ -1,0 +1,10 @@
+<!-- app/views/home/index.html.erb -->
+<h1>Welcome to Rick and Morty Collectibles</h1>
+
+<ul>
+  <% @collectible_cards.each do |card| %>
+    <li>
+      <%= card['name'] %> - <%= card['description'] %> - $<%= card['price'] %>
+    </li>
+  <% end %>
+</ul>
